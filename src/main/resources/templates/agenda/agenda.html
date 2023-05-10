@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agenda</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Agenda</h1>
+
+<div id="detalhesDia" class="detalhesDia oculto">
+    <h2 id="diaSelecionado"></h2>
+    <input type="text" id="nomeEvento" placeholder="Nome do evento">
+    <input type="text" id="localEvento" placeholder="Local do evento">
+    <input type="text" id="descricaoEvento" placeholder="Descrição do evento">
+    <button id="salvarEvento">Salvar</button>
+</div>
+
+<style>
+    h1{
+        display: inline;
+    }
+
+    h2{
+        display: inline;
+    }
+</style>
+
+<h1 id="dia"> [[${dia}]]</h1>
+<h2>[[${diaSemana}]]</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Hora</th>
+        <th>Funcionária 1</th>
+        <th>Funcionária 2</th>
+        <th>Funcionária 3</th>
+        <th><button data-toggle="modal" data-target="#modalAdicionarFuncionaria">Adicionar</button>
+        </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>07:00</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>08:00</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <!-- e assim por diante -->
+    </tbody>
+</table>
+
+<!-- Modal para adicionar funcionária -->
+<div class="modal fade" id="modalAdicionarFuncionaria" tabindex="-1" role="dialog" aria-labelledby="modalAdicionarFuncionariaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAdicionarFuncionariaTitle">Adicionar Funcionária</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="nomeFuncionaria">Nome da Funcionária:</label>
+                        <input type="text" class="form-control" id="nomeFuncionaria" name="nomeFuncionaria" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+
+
+    let dia = document.getElementById("dia").innerHTML.trim();
+
+
+    if (dia.length === 1){
+        dia = "0" + dia;
+        document.getElementById("dia").innerText = dia;
+    }
+
+
+</script>
+</body>
+</html>
+

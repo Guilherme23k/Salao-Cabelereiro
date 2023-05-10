@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema salão de cabelereiro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+
+    <div class="bg-red-400">
+        <h1 class="form">Formulario</h1>
+        <hr>
+        <div>
+            <form th:action="@{/clientes}" th:object="${cliente}" method="POST">
+                <input id="ativo" type="hidden" th:field="*{id}"/>
+                <div>
+                    <label for="ativo">Registro ativo</label>
+                    <input id="ativo" type="checkbox" th:field="*{ativo}"/>
+                </div>
+                <div>
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" th:field="*{nome}"/>
+                </div>
+                <div>
+                    <label for="celular">Celular</label>
+                    <input id="celular" type="text" th:field="*{celular}"/>
+                </div>
+                <div>
+                    <label for="dataUltimaCompra">Data</label>
+                    <input id="dataUltimaCompra" type="datetime-local" th:field="*{ultimaCompra}"/>
+                </div>
+                <div>
+                    <input type="submit" value="Salvar"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
