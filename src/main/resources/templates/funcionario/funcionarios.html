@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Funcionários</title>
+</head>
+<body>
+<div id="adicionar-funcionario">
+  <h2>Adicionar Funcionário</h2>
+  <form th:action="@{/funcionarios}" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required><br>
+    <label for="ativo">Ativo:</label>
+    <input type="checkbox" id="ativo" name="ativo"><br>
+    <label for="comissao">Comissão:</label>
+    <input type="text" id="comissao" name="comissao" required><br>
+    <input type="submit" value="Adicionar">
+  </form>
+</div>
+
+<div id="lista-funcionarios">
+  <h2>Lista de Funcionários</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Ativo</th>
+      <th>Comissão</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="funcionario : ${funcionarios}">
+      <td th:text="${funcionario.id}"></td>
+      <td th:text="${funcionario.nome}"></td>
+      <td th:text="${funcionario.comissao}"></td>
+      <td>
+        <a th:href="@{/funcionarios/edita/{id}(id=${funcionario.id})}">Editar</a>
+      </td>
+      <td>
+        <a th:if="${funcionario.ativo == true}" th:href="@{/funcionarios/ativa/{id}(id=${funcionario.id})}">Ativar</a>
+        <a th:unless="${funcionario.ativo == false}" th:href="@{/funcionarios/inativa/{id}(id=${funcionario.id})}">Inativar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

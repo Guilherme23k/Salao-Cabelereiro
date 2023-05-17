@@ -1,20 +1,26 @@
 package br.com.patriciasalao.controller;
 
+import br.com.patriciasalao.bo.FuncionarioBO;
 import br.com.patriciasalao.model.Funcionario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
+
 
 @Controller
 public class AgendaController {
+
+    @Autowired
+    private FuncionarioBO funcionarioBO;
+
     @GetMapping("/agenda")
     public String exibirAgenda(@RequestParam("mesAno") String mesAno, @RequestParam("dia") String dia, Model model) {
         // Lógica para exibir a agenda para o dia clicado
@@ -36,13 +42,5 @@ public class AgendaController {
         model.addAttribute("dia", dia);
         model.addAttribute("diaSemana", diaSemana);
         return "agenda/agenda";
-    }
-
-    @PostMapping("/agenda/adicionarFuncionaria")
-    public String adicionarFuncionaria(@RequestParam("nomeFuncionaria") String nomeFuncionaria) {
-        Funcionario funcionario = new Funcionario();
-        funcionario.setNome(nomeFuncionaria);
-        funcionarioRepository.save(funcionario);
-        return "redirect:/agenda"; // redireciona para a página da agenda
     }
 }
